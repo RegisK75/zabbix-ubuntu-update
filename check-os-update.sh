@@ -3,7 +3,7 @@
 ## This shell should be run via crontab on regular basis
 
 #!/bin/bash
-EXPORTFILE="/tmp/nc-os-update.json"
+EXPORTFILE="/tmp/zabbix-os-update.json"
 if [ -f $EXPORTFILE ]; then
 	rm $EXPORTFILE
 fi
