@@ -16,6 +16,9 @@ Ubuntu 22.04 and 24.04.
 5. Apply template to zabbix agent(s) where shell script is copied.
 
 ## Items
-| Name | Description | Type | Key and additional info |
-| --------------- | -------------------------------- | ---------------- | -------------------------------- |
-|  OS-Get-JSON    | Get json file from shell script  | Zabbix Agent     | No option                        |
+| Name                      | Description                                  | Type             |
+| ------------------------- | -------------------------------------------- | ---------------- | 
+| OS-Get-JSON               | Get json file from shell script              | Zabbix Agent     | 
+| reboot required           | 1 = reboot required ; 0 = no reboot required | Dependent item   |
+| Security update available | Number of security updates available         | Dependent item   |
+| Update available          | Number of updates available                  | Dependent item   |
