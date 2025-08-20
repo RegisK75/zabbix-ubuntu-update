@@ -1,0 +1,93 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: 846977d1dfed4968bc5f8bdb363285bc
+      name: 'Templates/Operating systems'
+  templates:
+    - uuid: 7232eba0f2b844d5aa474040c64fdc85
+      template: 'Ubuntu OS updates'
+      name: 'Ubuntu OS updates'
+      groups:
+        - name: 'Templates/Operating systems'
+      items:
+        - uuid: 76ae6a6070eb47e5a04412f7821a9a92
+          name: 'reboot required'
+          type: DEPENDENT
+          key: 'vfs.file.contents.reboot[reboot_required]'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.reboot_required
+          master_item:
+            key: 'vfs.file.contents[/tmp/nc-os-update.json]'
+          tags:
+            - tag: component
+              value: os
+          triggers:
+            - uuid: b039647821664fa9907d96ff26d0d08c
+              expression: 'last(/NC OS updates/vfs.file.contents.reboot[reboot_required])>0'
+              name: 'reboot required'
+              priority: WARNING
+              manual_close: 'YES'
+              tags:
+                - tag: component
+                  value: os
+        - uuid: 7718cf9830524069a8e1d57c71c316c9
+          name: 'Security update available'
+          type: DEPENDENT
+          key: 'vfs.file.contents.securityupdate[security_update_available]'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.security_update_available
+          master_item:
+            key: 'vfs.file.contents[/tmp/nc-os-update.json]'
+          tags:
+            - tag: component
+              value: os
+            - tag: component
+              value: security
+          triggers:
+            - uuid: 00d5ce8a534c44aeb25e6dc1050b73e2
+              expression: 'last(/NC OS updates/vfs.file.contents.securityupdate[security_update_available])>0'
+              name: '{ITEM.LASTVALUE} security update(s) available'
+              priority: AVERAGE
+              tags:
+                - tag: component
+                  value: os
+                - tag: component
+                  value: security
+        - uuid: 9844b74e532e46aa845a4516a0aa0554
+          name: 'Update available'
+          type: DEPENDENT
+          key: 'vfs.file.contents.update[update_availabale]'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.update_available
+          master_item:
+            key: 'vfs.file.contents[/tmp/nc-os-update.json]'
+          tags:
+            - tag: component
+              value: os
+          triggers:
+            - uuid: 74247f545d9a412f9c120fecc73ec311
+              expression: 'last(/NC OS updates/vfs.file.contents.update[update_availabale])>0'
+              name: '{ITEM.LASTVALUE} update(s) available'
+              priority: WARNING
+              tags:
+                - tag: component
+                  value: os
+        - uuid: 4b43492caf914eb9920282491b34acb1
+          name: OS-Get-JSON
+          key: 'vfs.file.contents[/tmp/nc-os-update.json]'
+          delay: 1h
+          value_type: TEXT
+          tags:
+            - tag: component
+              value: os
+            - tag: component
+              value: raw
+      tags:
+        - tag: component
+          value: os
