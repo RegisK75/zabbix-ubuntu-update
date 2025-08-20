@@ -17,7 +17,7 @@ Ubuntu 22.04 and 24.04.
 
 ## Items
 | Name                      | Description                                  | Type            | 
-| ------------------------- | -------------------------------------------- | ----------------|
+| :------------------------ | :------------------------------------------- | :---------------|
 | OS-Get-JSON               | Get json file from shell script              | Zabbix Agent    |
 | reboot required           | 1 = reboot required ; 0 = no reboot required | Dependent item  |
 | Security update available | Number of security updates available         | Dependent item  |
