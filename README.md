@@ -17,4 +17,5 @@ Ubuntu 22.04 and 24.04.
 
 ## Items
 | Name | Description | Type | Key and additional info |
-| -------- | -------------------------------- | ---------------- | -------------------------------- |
+| --------------- | -------------------------------- | ---------------- | -------------------------------- |
+|  OS-Get-JSON    | Get json file from shell script  | Zabbix Agent     | No option                        |
