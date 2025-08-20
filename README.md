@@ -1,4 +1,4 @@
-# zabbix-ubuntu-update
+# Zabbix template for ubuntu OS updates
 
 # Overview
 This is not official zabbix template.
