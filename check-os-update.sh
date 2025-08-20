@@ -1,12 +1,15 @@
+#!/bin/bash
 ## Shell to check Ubuntu OS update and if reboot is required.
 ## Output is JSON file in /tmp folder.
 ## This shell should be run via crontab on regular basis
 
-#!/bin/bash
+## This value is used in Zabbix Template.
 EXPORTFILE="/tmp/zabbix-os-update.json"
+
 if [ -f $EXPORTFILE ]; then
 	rm $EXPORTFILE
 fi
+
 echo -n "{\"reboot_required\":" > $EXPORTFILE
 if [ -f /var/run/reboot-required ]
 then
