@@ -25,7 +25,7 @@ zabbix_export:
               value: os
           triggers:
             - uuid: b039647821664fa9907d96ff26d0d08c
-              expression: 'last(/NC OS updates/vfs.file.contents.reboot[reboot_required])>0'
+              expression: 'last(/Ubuntu OS updates/vfs.file.contents.reboot[reboot_required])>0'
               name: 'reboot required'
               priority: WARNING
               manual_close: 'YES'
@@ -49,7 +49,7 @@ zabbix_export:
               value: security
           triggers:
             - uuid: 00d5ce8a534c44aeb25e6dc1050b73e2
-              expression: 'last(/NC OS updates/vfs.file.contents.securityupdate[security_update_available])>0'
+              expression: 'last(/Ubuntu OS updates/vfs.file.contents.securityupdate[security_update_available])>0'
               name: '{ITEM.LASTVALUE} security update(s) available'
               priority: AVERAGE
               tags:
@@ -72,7 +72,7 @@ zabbix_export:
               value: os
           triggers:
             - uuid: 74247f545d9a412f9c120fecc73ec311
-              expression: 'last(/NC OS updates/vfs.file.contents.update[update_availabale])>0'
+              expression: 'last(/Ubuntu OS updates/vfs.file.contents.update[update_availabale])>0'
               name: '{ITEM.LASTVALUE} update(s) available'
               priority: WARNING
               tags:
